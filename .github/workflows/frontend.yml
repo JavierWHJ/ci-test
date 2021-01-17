@@ -15,6 +15,10 @@ on:
       - 'frontend/**'
       - ".github/workflows/frontend.yml"
 
+defaults:
+  run:
+    working-directory: frontend
+
 jobs:
   build:
 
@@ -27,13 +31,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |
-        cd frontend
-        npm install
-        npm test
-        npm run build
+
+    - name: Restore node_modules from cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          node_modules
+          */*/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run the tests and generate coverage report
+      run: npm test
+
+    - name: Build
+      run: npm run build
 
