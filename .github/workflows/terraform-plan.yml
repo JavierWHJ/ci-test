@@ -9,10 +9,10 @@ jobs:
   validate-terraform:
     name: 'Validate and plan deploy'
     env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ARM_CLIENT_ID: "3745b60e-2fa5-4259-a52a-1ad004f32491"
+      ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: "303e1408-d86f-49f6-8ddc-3dfd92326f0a"
+      ARM_TENANT_ID: "8b7036c1-ecd7-485a-b288-d05708cccfcf"
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
