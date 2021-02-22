@@ -13,8 +13,8 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@master
 
-      - name: 'Azure Login'
-        run: 'az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}'
+      # - name: 'Azure Login'
+      #   run: 'az login -u ${{ secrets.AZURE_USERNAME }} -p ${{ secrets.AZURE_PASSWORD }}'
 
       - name: 'Terraform Format'
         uses: hashicorp/terraform-github-actions@master
